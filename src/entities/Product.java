@@ -38,7 +38,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Double Total() {
+    public Double total() {
         return price * quantity;
     }
 }

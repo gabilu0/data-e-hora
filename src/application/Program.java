@@ -2,10 +2,7 @@ package application;
 
 import entities.Product;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +41,15 @@ public class Program {
                 itemCsv = br.readLine();
             }
 
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(targetFileStr))) {
+                for (Product item : list) {
+                    bw.write(item.getName() + "," + String.format("%.2f", item.total()));
+                    bw.newLine();
+                }
+                System.out.println(targetFileStr + " Created");
+            }catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
