@@ -1,5 +1,10 @@
 package application;
 
+import entities.Product;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -10,7 +15,20 @@ public class Program {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Hello world");
+        List<Product> list = new ArrayList<>();
+
+        System.out.println("Enter file path: ");
+        String sourceFileStr = sc.nextLine();
+
+        File sourceFile = new File(sourceFileStr);
+        String sourceFolderStr = sourceFile.getParent();
+
+        boolean success = new File(sourceFolderStr + "\\out").mkdir();
+
+        
+
+        System.out.println("Folder create: " + success);
+
 
         sc.close();
     }
